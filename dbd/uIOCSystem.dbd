@@ -1,0 +1,6 @@
+#include "aiRecord.dbd"
+device(ai,INST_IO,devAiSystem,"AiChannel")
+#include "stringinRecord.dbd"
+device(stringin,INST_IO,devStringinSystem,"StringInChannel")
+#include "boRecord.dbd"
+device(bo,INST_IO,devBoSystem,"BoChannel")

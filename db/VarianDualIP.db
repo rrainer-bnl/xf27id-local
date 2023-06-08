@@ -1,0 +1,124 @@
+# VarianDualIP.db
+# Template database for Varian Dual pump controller
+# Pete Owens - 17/9/03
+# Mark Rivers - 1/March/2020
+#
+# substitutions:
+# P       - Prefix
+# R       - Record
+# PORT    - asyn serial port name
+# CHAN    - channel (1 or 2)
+# HIGH    - high pressure limit (exponent: limit = 1.0e$(HIGH)
+# HIHI    - hihi pressure limit (exponent: limit = 1.0e$(HIHI)
+################################################################################
+# HV on/off
+#
+record(bo, "$(P)$(R)HV")
+{
+    field(DESC, "HV on/off")
+    field(DTYP, "stream")
+    field(OUT,  "@VarianDualIP.protocol whvonoff($(CHAN)) $(PORT) 0")
+    field(FLNK, "$(P)$(R)P")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+record(bi, "$(P)$(R)HV_RBV")
+{
+    field(DESC, "HV on/off")
+    field(DTYP, "stream")
+    field(INP,  "@VarianDualIP.protocol rhvonoff($(CHAN)) $(PORT) 0")
+    field(ZNAM, "Off")
+    field(ZSV, "MINOR")
+    field(ONAM, "On")
+    field(OSV, "NO_ALARM")
+    field(SCAN, "1 second")
+    field(FLNK, "$(P)$(R)V")
+}
+
+################################################################################
+# Voltage
+#
+record(ai, "$(P)$(R)V")
+{
+    field(DESC, "Measured Voltage")
+    field(DTYP, "stream")
+    field(INP,  "@VarianDualIP.protocol vmeas($(CHAN)) $(PORT) 0")
+    field(EGU,  "V")
+    field(FLNK, "$(P)$(R)I")
+}
+################################################################################
+# Current
+#
+record(ai, "$(P)$(R)I")
+{
+    field(DESC, "Measured Current")
+    field(DTYP, "stream")
+    field(INP,  "@VarianDualIP.protocol imeas($(CHAN)) $(PORT) 0")
+    field(EGU,  "A")
+    field(FLNK, "$(P)$(R)P")
+}
+################################################################################
+# Pressure
+#
+record(ai, "$(P)$(R)P")
+{
+    field(DESC, "Measured Pressure")
+    field(DTYP, "stream")
+    field(INP,  "@VarianDualIP.protocol pmeas($(CHAN)) $(PORT) 0")
+    field(EGU,  "Torr")
+    field(HOPR, "1e3")
+    field(LOPR, "1e-12")
+    field(HIHI, "1.0e$(HIHI)")
+    field(HIGH, "1.0e$(HIGH)")
+    field(HHSV, "MAJOR")
+    field(HSV,  "MINOR")
+    field(LSV,  "NO_ALARM")
+    field(LOLO, "1e-12")
+    field(LLSV, "MAJOR")
+    field(FLNK, "$(P)$(R)PLOG")
+}
+
+record(calc, "$(P)$(R)PLOG")
+{
+    field(DESC, "log Pressure")
+    field(EGU,  "log")
+    field(CALC, "LOG(A)")
+    field(INPA, "$(P)$(R)P")
+    field(HOPR, "3")
+    field(LOPR, "-12")
+    field(HIHI, "$(HIHI)")
+    field(HIGH, "$(HIGH)")
+    field(HHSV, "MAJOR")
+    field(HSV,  "MINOR")
+    field(LSV,  "NO_ALARM")
+    field(LLSV, "NO_ALARM")
+    field(FLNK, "$(P)$(R)SP1")
+}
+################################################################################
+# Setpoints
+#
+record(ai, "$(P)$(R)SP1") {
+    field(DESC, "Setpoint 1")
+    field(DTYP, "stream")
+    field(INP,  "@VarianDualIP.protocol rsetpt1($(CHAN)) $(PORT) 0")
+    field(FLNK, "$(P)$(R)SP2")
+}
+record(ao, "$(P)$(R)SETSP1") {
+    field(DESC, "Set Setpoint 1")
+    field(DTYP, "stream")
+    field(OUT,  "@VarianDualIP.protocol wsetpt1($(CHAN)) $(PORT) 0")
+    field(FLNK, "$(P)$(R)SP1")
+}
+record(ai, "$(P)$(R)SP2") {
+    field(DESC, "Setpoint 2")
+    field(DTYP, "stream")
+    field(INP,  "@VarianDualIP.protocol rsetpt2($(CHAN)) $(PORT) 0")
+}
+record(ao, "$(P)$(R)SETSP2") {
+    field(DESC, "Set Setpoint 2")
+    field(DTYP, "stream")
+    field(OUT,  "@VarianDualIP.protocol wsetpt2($(CHAN)) $(PORT) 0")
+    field(FLNK, "$(P)$(R)SP2")
+}
+################################################################################

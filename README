@@ -1,0 +1,86 @@
+################################################################
+#                                                              #
+# Bundle - EPICS_Lean_Bundle_rhel_8.5_2022-04-11               #
+#                                                              #
+################################################################
+
+Package generated using installSynApps version: R2-6-77-g4143912
+
+Configuration repository: https://code.nsls2.bnl.gov/epics-modules-nsls2/rhel8-epics-config
+Configuration directory: EPICS_SPEC
+Configuration commit hash: 1057698ac3d0cee2c8c4989338c450eff703a13c
+
+Module versions used in this deployment:
+[module name] - [git tag]
+
+EPICS_BASE      - R7.0.5
+SNCSEQ          - 2.2.8
+IPAC            - 2.16
+SSCAN           - R2-11-3
+AUTOSAVE        - R5-10-2
+CALC            - R3-7-3
+ASYN            - R4-41
+DEVIOCSTATS     - 3.1.16-23-g4226b12
+SCALER          - 4.0-11-g0610626
+BUSY            - R1-7-3
+IPUNIDIG        - R2-12
+ADSUPPORT       - R1-9-1
+CAPUTLOG        - R3.7
+STD             - R3-6-2
+MCA             - R7-9
+IP              - R2-21
+STREAM          - 2.8.10
+MODBUS          - R3-2
+LUA             - R3-0-2
+MOTOR           - R7-2-2
+CAMAC           - R2-7-3
+OPTICS          - R2-13-5
+SNMP            - R2.5-1-gf329abb
+ETHER_IP        - ether_ip-3-3-1-g92d5fcf
+PMACUTIL        - debian/1.8-2-ga0fd38c
+RECCASTER       - 1.4-1-g9bae017
+DELAYGEN        - R1-2-2
+EXTENSIONS      - extensions_20120904-22-gce3af4c
+ADCORE          - R3-10
+QUADEM          - R9-4
+XSPRESS3        - 2-6-7-g97bfa7a
+ADANDOR3        - R2-2-23-g0cfa8b6
+ADPROSILICA     - R2-5
+ADSIMDETECTOR   - R2-10-22-g4b236f4
+ADPILATUS       - R2-9
+ADMERLIN        - R4-1-4-gab6ec75
+ADEIGER         - R2-7
+ADPOINTGREY     - R2-9-1-g08d3cf4
+ADMYTHEN        - R2-1-6-g0dbbe00
+ADURL           - R2-3
+ADUVC           - R1-6
+
+
+Build configuration:
+
+installSynApps Version: R2-6-77-g4143912
+EPICS_SPEC Version: 1057698ac3d0cee2c8c4989338c450eff703a13c
+
+To grab these versions:
+
+    git clone https://github.com/NSLS-II/installSynApps
+    cd installSynApps
+    git checkout 4143912fd42c02e029b33dd2200ba6db7681b225
+
+
+    cd ..
+    git clone https://code.nsls2.bnl.gov/epics-modules-nsls2/rhel8-epics-config
+    cd rhel8-epics-config
+    git checkout 1057698ac3d0cee2c8c4989338c450eff703a13c
+
+To regenerate sources for this bundle, grab installSynApps, and run:
+
+    ./installCLI.py -c $BUILD_CONFIG -i $INSTALL_LOCATION -p
+
+where $BUILD_CONFIG is the path to the EPICS_SPEC directory,
+and $INSTALL_LOCATION is your target install path.
+
+----------------------------------------------------------------
+Python 3 Version:   3.6.8
+OS Class:           rhel_8.5
+Build Date:         2022-04-11 11:28:05.327977

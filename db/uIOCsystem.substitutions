@@ -1,0 +1,8 @@
+file /opt/epics/modules/uIOCSystem/db/uIOCsystem.template {
+pattern 
+{ DEVICE, CARD, CS_VERSION_VAL}
+	{ "NIST6PODL2", "0", "testing" }
+}
+# DEVICE: device name
+# CARD: 
+# CS_VERSION_VAL: 

@@ -1,0 +1,15 @@
+################
+# RECORD SUPPORT
+################
+include "camacRecord.dbd"
+
+################
+# DEVICE SUPPORT
+################
+
+################
+# DRIVER SUPPORT
+################
+
+
+registrar(camacRegistrar)
